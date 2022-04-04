@@ -1,6 +1,7 @@
 package com.games.wordle.model;
 
 public class Player {
+
     private final String name;
     private final int id;
     private int wins;
@@ -54,4 +55,5 @@ public class Player {
                 ", winPercentage= " + this.winPercentage() +
                 '}';
     }
+
 }

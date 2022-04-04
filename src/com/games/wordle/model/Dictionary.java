@@ -1,13 +1,7 @@
 package com.games.wordle.model;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 public class Dictionary {
+
 
     private static final String dataFilePath= "data/WordleWordList.csv";
 
@@ -41,4 +35,5 @@ public class Dictionary {
    /* public void dump(){
         System.out.println(wordMap);
     }*/
+
 }
