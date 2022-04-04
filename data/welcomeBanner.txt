@@ -1,8 +1,6 @@
-" AM I not wordle enough for the wordle club ?? "
 
 
-Wordle Wordle
-
+            " AM I not wurtley enough for the wurtle club ?? "
 
                                ___-------___
                            _-~~             ~~-_
@@ -10,8 +8,8 @@ Wordle Wordle
      /^\__/^\         /~  \                   /    \
    /|  O|| O|        /      \_______________/        \
   | |___||__|      /       /                \          \
-  |          \    /      /                    \          \
-  |   (_______) /______/                        \_________ \
+  |          \    /      /       Wurtle       \          \
+  |   (_______) /______/         Wurtle        \_________ \
   |         / /         \                      /            \
    \         \^\\         \                  /               \     /
      \         ||           \______________/      _-_       //\__//
