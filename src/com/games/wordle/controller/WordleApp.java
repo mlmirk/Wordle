@@ -13,7 +13,7 @@ public class WordleApp {
     private Scanner scanner = new Scanner(System.in);
     private String playerName;
     private static final int wordLength = 5;
-    private static final String bannerFilePath = "welcomeBanner.txt";
+    private static final String bannerFilePath = "data/welcomeBanner.txt";
     private int numberOfTries = 0;
     private boolean isGameOver = false;
 
@@ -21,7 +21,9 @@ public class WordleApp {
 
     public void execute(){
         welcome();
-
+        Board board = Board.getInstance();
+        board.show();
+        board.show();
     }
     private void welcome(){
         try {
@@ -31,10 +33,12 @@ public class WordleApp {
             e.printStackTrace();
         }
     }
-    private void initBoard(){
-        board = new Board();
+
+/*    private void initBoard(){
+        Board board = Board.getInstance();
+        startGame();
 //        board.Player.setName(playerName);
-    }
+    }*/
 
     private void enterName(){
         System.out.println("Please enter your name: ");
@@ -42,9 +46,9 @@ public class WordleApp {
     }
 
     private void startGame(){
-        initBoard();
-
-        }
+        board.show();
+        board.show();
+    }
 
 //        System.out.println("Hey, You Found The Answer in " +  numberOfTries + " tries.");
 
