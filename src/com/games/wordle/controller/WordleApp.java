@@ -3,6 +3,9 @@ package com.games.wordle.controller;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Dictionary;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class WordleApp {
@@ -11,6 +14,8 @@ public class WordleApp {
     private String playerName;
     private static final int wordLength = 5;
     private static final String bannerFilePath = "welcomeBanner.txt";
+    private int numberOfTries = 0;
+    private boolean isGameOver = false;
 
 
 
@@ -28,7 +33,6 @@ public class WordleApp {
     }
     private void initBoard(){
         board = new Board();
-        String userInput = scanner.nextLine();
 //        board.Player.setName(playerName);
     }
 
@@ -39,7 +43,16 @@ public class WordleApp {
 
     private void startGame(){
         initBoard();
-    }
+
+        }
+
+//        System.out.println("Hey, You Found The Answer in " +  numberOfTries + " tries.");
+
+
+//    private void displayWordleWord(){
+//        Map<Dictionary, List<String>>availWords ;
+//        String guessMap;
+//    }
     private void quitGame(){
 
     }
