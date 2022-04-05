@@ -8,23 +8,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class Board implements Serializable {
-        private static final String guessPath= "data/board.dat";
+public class Board  {
+
         private final Map<Integer,String[]> guessMap= new TreeMap<>();
 
         public static com.games.wordle.controller.Board getInstance() {
-            com.games.wordle.controller.Board board = null;
-
-            if(Files.exists(Paths.get(guessPath))){//data file exists
-                try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(guessPath))){
-                    board = (com.games.wordle.controller.Board) in.readObject();
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
-            }else{
-                board = new com.games.wordle.controller.Board();
-
-            }
+            Board board = new com.games.wordle.controller.Board();
             return board;
         }
 
@@ -40,17 +29,9 @@ public class Board implements Serializable {
             guessMap.put(turn,temp);
         }
 
-   /* private void save() {
-
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(guessPath))){
-            out.writeObject(this);
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }*/
 
         public void show(){
-            if(guessMap.isEmpty()){
+            if(guessMap.isEmpty()){ //put turn == 0 here rather then empty when conectect
                 fillMapTemplate();
             } else {
                 Collection<String[]> guesses = guessMap.values();
