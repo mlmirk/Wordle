@@ -14,6 +14,7 @@ public class Board  {
 
         public static com.games.wordle.controller.Board getInstance() {
             Board board = new com.games.wordle.controller.Board();
+            board.fillMapTemplate();
             return board;
         }
 

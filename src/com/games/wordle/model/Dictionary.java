@@ -63,7 +63,10 @@ public class Dictionary implements Serializable {
     }
 
     public boolean isValidWord(String guess){
-        return wordMap.containsValue(guess);
+        if (wordMap.containsValue(guess)) {
+            return true;
+        }
+        return false;
     }
 
 

@@ -6,14 +6,12 @@ import com.games.wordle.model.Player;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class WordleApp {
     private  Board board;
     private Scanner scanner = new Scanner(System.in);
-    private static final int wordLength = 5;
+    private static int index = 0;
     private static final String bannerFilePath = "data/welcomeBanner.txt";
     private int turns = 0;
     private boolean isGameOver = false;
@@ -25,8 +23,8 @@ public class WordleApp {
         enterName();
         Board board = Board.getInstance();
         Dictionary dictionary = new Dictionary();
-        startGame();
-
+        getValidInput(dictionary);
+        board.show();
     }
 
     private void welcome(){
@@ -46,11 +44,25 @@ public class WordleApp {
     }
 
 
-    private void startGame(){
-        board.show();
-        board.show();
+    private void getValidInput(Dictionary dictionary) {
+        String playerInput = scanner.nextLine();
+        while (!dictionary.isValidWord(playerInput) || playerInput.length() != 5 || !isGameOver) {
+            System.out.println("Invalid input");
+            playerInput = scanner.nextLine();
+            if (dictionary.isValidWord(playerInput) && playerInput.length() == 5 && !isGameOver) {
+                System.out.println("Valid word");
+                break;
+                // send this to the gues method, then redo start game? Maybe change startgame to just
+                // be a method for turns...
+            }
+        }
     }
 
+    public void gameOver(int turns, String playerInput) {
+        if (turns == 5) {
+
+        }
+    }
 //        System.out.println("Hey, You Found The Answer in " +  turns + " tries.");
 
 
