@@ -3,12 +3,10 @@ package com.games.wordle.model;
 public class Player {
 
     private final String name;
-    private final int id;
     private int wins;
     private int gamesPlayed;
 
-    public Player(String name, int id) {
-        this.id = id;
+    public Player(String name) {
         this.name = name;
     }
 
@@ -23,10 +21,6 @@ public class Player {
 
     public String getName() {
         return name;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public int getWins() {
@@ -49,7 +43,6 @@ public class Player {
     public String toString() {
         return "Player{" +
                 "name='" + name + '\'' +
-                ", id=" + id +
                 ", wins=" + wins +
                 ", gamesPlayed=" + gamesPlayed +
                 ", winPercentage= " + this.winPercentage() +

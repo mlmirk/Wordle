@@ -31,7 +31,7 @@ public class Board  {
 
 
         public void show(){
-            if(guessMap.isEmpty()){ //put turn == 0 here rather then empty when conectect
+            if(guessMap.isEmpty()){ //put turn == 0 here rather than empty when connected
                 fillMapTemplate();
             } else {
                 Collection<String[]> guesses = guessMap.values();

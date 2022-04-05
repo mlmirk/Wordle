@@ -1,9 +1,11 @@
 package com.games.wordle.controller;
 
+import com.games.wordle.model.Dictionary;
+import com.games.wordle.model.Player;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Dictionary;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -11,20 +13,22 @@ import java.util.Scanner;
 public class WordleApp {
     private  Board board;
     private Scanner scanner = new Scanner(System.in);
-    private String playerName;
     private static final int wordLength = 5;
     private static final String bannerFilePath = "data/welcomeBanner.txt";
-    private int numberOfTries = 0;
+    private int turns = 0;
     private boolean isGameOver = false;
 
 
 
     public void execute(){
         welcome();
+        enterName();
         Board board = Board.getInstance();
-        board.show();
-        board.show();
+        Dictionary dictionary = new Dictionary();
+        startGame();
+
     }
+
     private void welcome(){
         try {
             String text = Files.readString(Path.of(bannerFilePath));
@@ -34,23 +38,20 @@ public class WordleApp {
         }
     }
 
-/*    private void initBoard(){
-        Board board = Board.getInstance();
-        startGame();
-//        board.Player.setName(playerName);
-    }*/
 
     private void enterName(){
         System.out.println("Please enter your name: ");
-        playerName = scanner.nextLine();
+        String playerName = scanner.nextLine();
+        Player currentPlayer  = new Player(playerName);
     }
+
 
     private void startGame(){
         board.show();
         board.show();
     }
 
-//        System.out.println("Hey, You Found The Answer in " +  numberOfTries + " tries.");
+//        System.out.println("Hey, You Found The Answer in " +  turns + " tries.");
 
 
 //    private void displayWordleWord(){
