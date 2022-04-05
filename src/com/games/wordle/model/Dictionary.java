@@ -32,12 +32,10 @@ public class Dictionary implements Serializable {
         return wordleMap;
     }
 
-    public String[] getSecretWord(int index){
-        String[] secret;
-        secret=wordMap.get(index).split("");
-        //System.out.println(Arrays.toString(secret));
-        return secret;
+    public String getSecretWord(int index){
+        return wordMap.get(index);
     }
+    //refactor to other class
     public void saveName(String name){
        wordMap.put(15000, name);
     }
