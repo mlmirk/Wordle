@@ -1,22 +1,11 @@
 package com.games.wordle.controller;
 
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
-import java.io.Serializable;
-
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
 
-public class Board  {
+public class Board {
 
-        private final Map<Integer,String[]> guessMap= new TreeMap<>();
+        private Map<Integer,String[]> guessMap= new TreeMap<>();
 
-        public static com.games.wordle.controller.Board getInstance() {
-            Board board = new com.games.wordle.controller.Board();
-            board.fillMapTemplate();
-            return board;
-        }
 
         public void fillMapTemplate(){
             for(int i =0 ; i < 6 ; i++){
@@ -24,6 +13,9 @@ public class Board  {
                 guessMap.put(i,temp );
             }
         }
+
+
+
 
         public void updateBoard(int turn, String userGuess ){
             String[] temp = userGuess.split("");
