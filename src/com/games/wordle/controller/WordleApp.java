@@ -3,6 +3,7 @@ package com.games.wordle.controller;
 import com.games.wordle.model.Dictionary;
 import com.games.wordle.model.Player;
 
+import java.io.Console;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
@@ -20,21 +21,19 @@ public class WordleApp {
     private String guess;
     Player currentPlayer;
     boolean hasPlayed = false;
-    //wordle app has a dictionary
-
-    //It who has the data does the work
+    boolean isWindows = System.getProperty("os.name").contains("Windows");
 
     public void execute() {
         if (!hasPlayed) {
             welcome();
             enterName();
         }
-        board.show();
+        welcome();
+
         getSecretWord();
-        System.out.println("Enter a 5 letter word: ");
         while (!isGameOver) {
+            System.out.println("Enter a 5 letter word: ");
             getValidInput();
-            //board.show();
             gameOver(turns, guess);
         }
 
@@ -50,31 +49,34 @@ public class WordleApp {
         }
     }
 
-    private void getSecretWord(){
+    private void getSecretWord() {
         int index = (int) Math.floor(Math.random() * (12971 + 1) + 0);
-        while(currentPlayer.indexUsed(index)){
-           index = (int) Math.floor(Math.random() * (12971 + 1) + 0);
+        while (currentPlayer.indexUsed(index)) {
+            index = (int) Math.floor(Math.random() * (12971 + 1) + 0);
         }
         currentPlayer.insertIndexes(index);
         secretWord = dict.getSecretWord(index);
     }
 
 
-
     private void enterName() {
         System.out.println("Please enter your name: ");
-
         String playerName = scanner.nextLine();
         currentPlayer = new Player(playerName);
+        clearScreen();
     }
 
 
     private void getValidInput() {
 
+
         boolean isValid = false;
 
         do {
             guess = scanner.nextLine().toLowerCase();
+            if (guess.equals("cheater")) {
+                System.out.println(secretWord);
+            }
             if (guess.length() == 5 && dict.isValidWord(guess) && currentPlayer.alreadyGuessed(guess)) {
                 isValid = true;
                 turns++;
@@ -82,34 +84,42 @@ public class WordleApp {
                 System.out.println("Not a valid word ");
         } while (!isValid);
         currentPlayer.insertGuesses(guess);
-        wordChecker(guess, secretWord);
+        clearScreen();
+        welcome();
+        wordChecker(currentPlayer.getGuesses(), secretWord);
 
     }
 
-    public void wordChecker(String guess, String secret) {
+    public void wordChecker(List<String> guessList, String secret) {
 
-        String[] guessArray = guess.split("");
-        for (int i = 0; i < secret.length(); i++) {
-            if (secret.contains(guessArray[i])) {
-                int current = secret.indexOf(guessArray[i], i);
-                if (i == current) {
-                    String x = String.valueOf(guessArray[i]);
-                    secret = secret.replaceFirst("" + x + "", "!");
-                    System.out.print(Color.GREEN_BACKGROUND + guessArray[i]);
+        String truth = secret;
+        for (Object guess : guessList
+        ) {
+            String[] guessArray = String.valueOf(guess).split("");
+            for (int i = 0; i < secret.length(); i++) {
+                if (secret.contains(guessArray[i])) {
+                    int current = secret.indexOf(guessArray[i], i);
+                    //at 2
+                    if (i == current) {
+                        String x = String.valueOf(guessArray[i]);
+                        secret = secret.replaceFirst("" + x + "", "!");
+                        System.out.print(Color.GREEN_BACKGROUND + guessArray[i]);
+
+                    } else {
+                        System.out.print(Color.YELLOW_BACKGROUND + guessArray[i]);
+                        String x = String.valueOf(guessArray[i]);
+                        secret = secret.replaceFirst("" + x + "", "!");
+
+                    }
                 } else {
-                    System.out.print(Color.YELLOW_BACKGROUND + guessArray[i]);
-                    String x = String.valueOf(guessArray[i]);
-                    secret = secret.replaceFirst("" + x + "", "!");
+                    System.out.print(Color.RED_BACKGROUND + guessArray[i]);
                 }
-            } else {
-                System.out.print(Color.RED_BACKGROUND + guessArray[i]);
+
+                System.out.print(Color.RESET);
+                secret = truth;
             }
-            System.out.print(Color.RESET);
-
-
+            System.out.println();
         }
-
-        System.out.println();
     }
 
 
@@ -119,6 +129,7 @@ public class WordleApp {
             playAgain();
         }
     }
+
     private void playAgain() {
 
         System.out.print("Do you want to [P]lay again? Or [Q]uit game?   ");
@@ -126,7 +137,9 @@ public class WordleApp {
         switch (options) {
             case "P":
                 hasPlayed = true;
-                isGameOver=false;
+                isGameOver = false;
+                currentPlayer.clearGuesses();
+                clearScreen();
                 execute();
                 break;
             case "Q":
@@ -137,16 +150,29 @@ public class WordleApp {
         }
     }
 
-        private void quitGame(){
-            wordleSurvey();
+
+    public void clearScreen() {
+        try {
+            if (isWindows) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                Runtime.getRuntime().exec("clear");
+            }
+        } catch (Exception ignored) {
         }
+    }
 
 
-        private void wordleSurvey(){
-            System.out.println("How did you like Wordle by MDN Wordle Docs ?  ");
-            String survey = scanner.nextLine();
-            System.out.println("Thank You! We now know you are Wurtley enough for the Wurtle Club..");
-        }
+    private void quitGame() {
+        wordleSurvey();
+    }
+
+
+    private void wordleSurvey() {
+        System.out.println("How did you like Wordle by MDN Wordle Docs ?  ");
+        String survey = scanner.nextLine();
+        System.out.println("Thank You! We now know you are Wurtley enough for the Wurtle Club..");
+    }
 
 
 }
