@@ -1,39 +1,42 @@
 package com.games.wordle.model;
 
-public class Dictionary {
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+public class Dictionary{
+    private static final String dataFilePath = "data/wordleData.csv";
+    private Map<Integer, String> wordMap = getDictionaryInstance();
 
-    private static final String dataFilePath= "data/WordleWordList.csv";
-
-
-    private final Map<Integer,String> wordMap= loadWordMap();
-
-    private Map<Integer, String> loadWordMap() {
-        Map<Integer,String > wordleMap= new HashMap<>();
-        int id = 0;
+    public Map<Integer, String> getDictionaryInstance() {
+        Map<Integer, String> wordMap = new HashMap<>();
         try {
             List<String> lines = Files.readAllLines(Paths.get(dataFilePath));
-            for (String line: lines) {
-                String[] tokens= line.split(",");
-                Integer idKey= id;
-                String name= tokens[0];
-                wordleMap.put(idKey,name);
-                id++;
+            for (String line : lines) {
+                String[] tokens = line.split(",");
+                Integer id = Integer.valueOf(tokens[0]);
+                String name = tokens[1];
+                wordMap.put(id, name);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return wordleMap;
+        return wordMap;
     }
 
-    public String getSecretWord(int index){
-        String secret;
-        secret=wordMap.get(index);
-        return secret;
+    public String getSecretWord(int index) {
+        return wordMap.get(index);
     }
 
-   /* public void dump(){
-        System.out.println(wordMap);
-    }*/
-
+    public boolean isValidWord(String guess) {
+        if (wordMap.containsValue(guess)) {
+            return true;
+        }
+        return false;
+    }
 }
+
+
