@@ -76,18 +76,21 @@ public class WordleApp {
     }
 
     public void wordChecker(String guess, String secret) {
-        boolean exists = false;
-        secret = "hello";
-        String[] secretArray = secret.split("");
 
         String[] guessArray = guess.split("");
-        for (int i = 0; i < 5; i++) {
+        secret="boobs";
+
+        for (int i = 0; i < secret.length(); i++) {
             if (secret.contains(guessArray[i])) {
                 int current = secret.indexOf(guessArray[i],i);
                 if (i == current) {
+                    String x = String.valueOf(guessArray[i]);
+                    secret = secret.replaceFirst(""+x+"", "!");
                     System.out.print(Color.GREEN_BACKGROUND + guessArray[i]);
                 } else {
                     System.out.print(Color.YELLOW_BACKGROUND + guessArray[i]);
+                    String x = String.valueOf(guessArray[i]);
+                    secret = secret.replaceFirst(""+x+"", "!");
                 }
             }else{
             System.out.print(Color.RED_BACKGROUND + guessArray[i]);
@@ -96,7 +99,7 @@ public class WordleApp {
 
 
         }
-
+        System.out.println();
     }
 
 
