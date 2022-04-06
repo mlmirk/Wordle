@@ -2,16 +2,13 @@ package com.games.wordle.controller;
 
 import com.games.wordle.model.Dictionary;
 import com.games.wordle.model.Player;
-
-import java.io.Console;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
 public class WordleApp {
-    private Board board = new Board();
+    // private Board board = new Board();
     private Scanner scanner = new Scanner(System.in);
     private static final String bannerFilePath = "data/welcomeBanner.txt";
     private int turns = 0;
@@ -19,9 +16,9 @@ public class WordleApp {
     private String secretWord;
     private Dictionary dict = new Dictionary();
     private String guess;
-    Player currentPlayer;
     boolean hasPlayed = false;
     boolean isWindows = System.getProperty("os.name").contains("Windows");
+    Player currentPlayer;
 
     public void execute() {
         if (!hasPlayed) {
@@ -29,15 +26,12 @@ public class WordleApp {
             enterName();
         }
         welcome();
-
         getSecretWord();
         while (!isGameOver) {
             System.out.println("Enter a 5 letter word: ");
             getValidInput();
             gameOver(turns, guess);
         }
-
-
     }
 
     private void welcome() {
@@ -58,7 +52,6 @@ public class WordleApp {
         secretWord = dict.getSecretWord(index);
     }
 
-
     private void enterName() {
         System.out.println("Please enter your name: ");
         String playerName = scanner.nextLine();
@@ -66,12 +59,8 @@ public class WordleApp {
         clearScreen();
     }
 
-
     private void getValidInput() {
-
-
         boolean isValid = false;
-
         do {
             guess = scanner.nextLine().toLowerCase();
             if (guess.equals("cheater")) {
@@ -87,11 +76,9 @@ public class WordleApp {
         clearScreen();
         welcome();
         wordChecker(currentPlayer.getGuesses(), secretWord);
-
     }
 
-    public void wordChecker(List<String> guessList, String secret) {
-
+    private void wordChecker(List<String> guessList, String secret) {
         String truth = secret;
         for (Object guess : guessList
         ) {
@@ -104,24 +91,20 @@ public class WordleApp {
                         String x = String.valueOf(guessArray[i]);
                         secret = secret.replaceFirst("" + x + "", "!");
                         System.out.print(Color.GREEN_BACKGROUND + guessArray[i]);
-
                     } else {
                         System.out.print(Color.YELLOW_BACKGROUND + guessArray[i]);
                         String x = String.valueOf(guessArray[i]);
                         secret = secret.replaceFirst("" + x + "", "!");
-
                     }
                 } else {
                     System.out.print(Color.RED_BACKGROUND + guessArray[i]);
                 }
-
                 System.out.print(Color.RESET);
                 secret = truth;
             }
             System.out.println();
         }
     }
-
 
     public void gameOver(int turns, String playerInput) {
         if (turns == 6 || secretWord.equals(playerInput)) {
@@ -131,7 +114,6 @@ public class WordleApp {
     }
 
     private void playAgain() {
-
         System.out.print("Do you want to [P]lay again? Or [Q]uit game?   ");
         String options = scanner.nextLine().toUpperCase();
         switch (options) {
@@ -150,8 +132,7 @@ public class WordleApp {
         }
     }
 
-
-    public void clearScreen() {
+    private void clearScreen() {
         try {
             if (isWindows) {
                 new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
@@ -162,17 +143,14 @@ public class WordleApp {
         }
     }
 
-
     private void quitGame() {
         wordleSurvey();
     }
 
-
     private void wordleSurvey() {
         System.out.println("How did you like Wordle by MDN Wordle Docs ?  ");
         String survey = scanner.nextLine();
-        System.out.println("Thank You! We now know you are Wurtley enough for the Wurtle Club..");
+        System.out.println("Thank You " + currentPlayer.getName() +
+                "! We now know you are Wurtley enough for the Wurtle Club..");
     }
-
-
 }

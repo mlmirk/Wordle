@@ -8,11 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public class Dictionary{
-
-
     private static final String dataFilePath = "data/wordleData.csv";
-
-
     private Map<Integer, String> wordMap = getDictionaryInstance();
 
     public Map<Integer, String> getDictionaryInstance() {
@@ -41,7 +37,6 @@ public class Dictionary{
         }
         return false;
     }
-
 }
 
 

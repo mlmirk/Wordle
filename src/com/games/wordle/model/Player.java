@@ -15,13 +15,9 @@ public class Player {
         this.name = name;
     }
 
-    /*public double winPercentage() {
-        return (double) getWins() / getGamesPlayed();
-    }*/
-
-    /*public String getName() {
+    public String getName() {
         return name;
-    }*/
+    }
 
    /* public int getWins() {
         return wins;
@@ -46,10 +42,10 @@ public class Player {
     public List<String> getGuesses(){
         return guesses;
     }
+
     public void clearGuesses(){
         guesses.clear();
     }
-
 
     public boolean alreadyGuessed(String guess){
         if(guesses.contains(guess)){
@@ -61,11 +57,9 @@ public class Player {
     public void insertIndexes(int index){
         randomIndex.add(index);
     }
+
     public boolean indexUsed(int index){
        return randomIndex.contains(index);
-
-
-
     }
 
     @Override
@@ -74,8 +68,6 @@ public class Player {
                 "name='" + name + '\'' +
                 ", wins=" + wins +
                 ", gamesPlayed=" + gamesPlayed +
-                ", winPercentage= " + //this.winPercentage() +
                 '}';
     }
-
 }

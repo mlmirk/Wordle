@@ -1,5 +1,3 @@
-
-
             " AM I not wurtley enough for the wurtle club ??  "
 
                                ___-------___
@@ -17,11 +15,13 @@
          ~-----||====/~     |==================|       |/~~~~~
           (_(__/  ./     /                    \_\      \.
                  (_(___/                         \_____)_)
-        Welcome to Hi all I am wurtle wurtle the wordle turtle!
+
+Welcome! I am wurtle wurtle the wordle turtle!
 A little about my game, you are trying to guess the secret word in
 under 6 guesses.
 Don't worry I've included some help in the form an text coloring!
-There are three colors Red- The letter does not appear not he word
-                       Yellow- it is in the word but the wrong position
-                       Green= Right letter write spot!
-As far as controls go after the prompts hit enter to submit.
+There are three colors
+Red- The letter does not appear not he word
+Yellow- it is in the word but the wrong position
+Green= Right letter right spot!
+As far as controls go, after the prompts hit enter to submit.
