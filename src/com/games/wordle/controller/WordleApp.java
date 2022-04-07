@@ -101,8 +101,8 @@ public class WordleApp {
                     System.out.print(Color.RED_BACKGROUND + guessArray[i]);
                 }
                 System.out.print(Color.RESET);
-                secret = truth;
             }
+            secret = truth;
             System.out.println();
         }
     }
