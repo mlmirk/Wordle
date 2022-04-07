@@ -1,4 +1,4 @@
-package com.games.wordle.view;
+package com.games.wordle.client;
 
 import com.games.wordle.controller.WordleApp;
 
