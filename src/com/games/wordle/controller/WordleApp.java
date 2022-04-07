@@ -2,6 +2,7 @@ package com.games.wordle.controller;
 
 import com.games.wordle.model.Dictionary;
 import com.games.wordle.model.Player;
+import com.games.wordle.model.WriteFile;
 
 import java.io.Console;
 import java.io.IOException;
@@ -161,7 +162,16 @@ public class WordleApp {
         } catch (Exception ignored) {
         }
     }
+    private void savingGame() {
+        System.out.println("\nEnter any key to continue or type 'save' to save the game. Or 'quit' to end the game.");
+        String askToSave = new String();
 
+
+        if (askToSave.equalsIgnoreCase("save")) {
+//            WriteFile saveGame = new WriteFile("saveFile.txt", (""));
+//            saveGame.save();
+        }
+    }
 
     private void quitGame() {
         wordleSurvey();
