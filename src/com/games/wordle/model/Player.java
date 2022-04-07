@@ -19,21 +19,25 @@ public class Player {
         return name;
     }
 
-   /* public int getWins() {
+   public int getWins() {
         return wins;
     }
 
-    public void setWins(int wins) {
-        this.wins = wins;
-    }*/
+    public void win() {
+        wins++;
+    }
 
-   /* public int getGamesPlayed() {
+    public int getGamesPlayed() {
         return gamesPlayed;
-    }*/
+    }
 
-  /*  public void updateGamesPlayed() {
-        this.gamesPlayed++;
-    }*/
+    public void updateGamesPlayed() {
+        gamesPlayed++;
+    }
+
+    public double getWinPercentage() {
+        return ((double) getWins() / getGamesPlayed()) * 100.0;
+    }
 
     public void insertGuesses(String guess){
         guesses.add(guess);
