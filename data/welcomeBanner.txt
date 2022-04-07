@@ -18,10 +18,10 @@
 
 Welcome! I am wurtle wurtle the wordle turtle!
 A little about my game, you are trying to guess the secret word in
-under 6 guesses.
+6 guesses or less.
 Don't worry I've included some help in the form an text coloring!
-There are three colors
-Red- The letter does not appear not he word
-Yellow- it is in the word but the wrong position
-Green= Right letter right spot!
+There are three colors:
+Red- The letter does not appear in the word
+Yellow- it is in the word, but in the wrong position
+Green- Right letter, right spot!
 As far as controls go, after the prompts hit enter to submit.

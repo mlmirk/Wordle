@@ -16,8 +16,10 @@ Thank you for downloading our game WORDLE !
 
 
 ###Our Game :
-Wurtle has a  feature where tiles in words change colors. This feature is a must- have in order f
+Wurtle has a  feature where tiles in words change colors. This feature is a must- have in order
 for the player to be successful. In order to use this feature please download our file for a one time fee of  19.99.
+Then run this cmd:
+`` reg add HKEY_CURRENT_USER\Console /v VirtualTerminalLevel /t REG_DWORD /d 0x00000001 /f ``
 This will allow any Windows' user to generate this feature in their command prompt.
 MAC users should not have a problem with theme functionality.
 
