@@ -69,6 +69,7 @@ public class WordleApp {
             if (guess.length() == 5 && dict.isValidWord(guess) && currentPlayer.alreadyGuessed(guess)) {
                 isValid = true;
                 turns++;
+                System.out.println("this is the turns " + turns);
             } else
                 System.out.println("Not a valid word ");
         } while (!isValid);
@@ -106,9 +107,12 @@ public class WordleApp {
         }
     }
 
-    public void gameOver(int turns, String playerInput) {
-        if (turns == 6 || secretWord.equals(playerInput)) {
+    public void gameOver(int turn, String playerInput) {
+        if (turn == 6 || secretWord.equals(playerInput)) {
             isGameOver = true;
+            System.out.println("The wurtle word was " + Color.GREEN_BACKGROUND  +
+                    secretWord + "!" + Color.RESET);
+            turns = 0;
             playAgain();
         }
     }
