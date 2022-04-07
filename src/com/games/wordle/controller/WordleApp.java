@@ -8,7 +8,6 @@ import java.nio.file.Path;
 import java.util.*;
 
 public class WordleApp {
-    // private Board board = new Board();
     private Scanner scanner = new Scanner(System.in);
     private static final String bannerFilePath = "data/welcomeBanner.txt";
     private int turns = 0;
@@ -27,6 +26,7 @@ public class WordleApp {
         }
         welcome();
         getSecretWord();
+        currentPlayer.updateGamesPlayed();
         while (!isGameOver) {
             System.out.println("Enter a 5 letter word: ");
             getValidInput();
@@ -108,11 +108,16 @@ public class WordleApp {
     }
 
     public void gameOver(int turn, String playerInput) {
+        if (secretWord.equals(playerInput)) {
+            currentPlayer.win();
+            System.out.println("Congratulations! You won Wurtle in " + turns + "!");
+        }
         if (turn == 6 || secretWord.equals(playerInput)) {
             isGameOver = true;
             System.out.println("The wurtle word was " + Color.GREEN_BACKGROUND  +
                     secretWord + "!" + Color.RESET);
             turns = 0;
+            playerStats();
             playAgain();
         }
     }
@@ -145,6 +150,12 @@ public class WordleApp {
             }
         } catch (Exception ignored) {
         }
+    }
+
+    private void playerStats() {
+        System.out.println("You have played " + currentPlayer.getGamesPlayed() + " games. " +
+                "You have won " + currentPlayer.getWins() + " times. Your win percentage " +
+                " is " + currentPlayer.getWinPercentage() + "%.");
     }
 
     private void quitGame() {
